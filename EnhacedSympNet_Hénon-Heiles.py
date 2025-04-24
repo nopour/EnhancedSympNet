@@ -260,7 +260,7 @@ class SimpleHNN_ODEFunc(nn.Module): # Standard HNN: Learns H = NN(z)
 
 # --- Loss Function
 def physics_informed_loss_henon_heiles(model, states_pred, t_eval, initial_state_np, t_span_end):
-    """ Calculates physics-informed loss. Handles NaNs. Consistent with LaTeX 4.7.2 """
+    """ Calculates physics-informed loss. Handles NaNs. Consistent with 4.7.2 """
     # Input Validation
     if not torch.isfinite(states_pred).all():
          print("Loss NaN Input."); high_loss, nan_loss = torch.tensor(1e7,device=DEVICE,dtype=DTYPE), torch.tensor(float('nan'),device=DEVICE,dtype=DTYPE)
@@ -281,7 +281,7 @@ def physics_informed_loss_henon_heiles(model, states_pred, t_eval, initial_state
 
     # Time-Dependent Loss Weighting
     # Ensure time weights are broadcastable (shape [n_t-1] or [n_t])
-    # Use coefficient 0.5 to match LaTeX Section 4.7.2: w(t) = 1.0 + 0.5 * (t / T)
+    # Use coefficient 0.5 to match Section 4.7.2: w(t) = 1.0 + 0.5 * (t / T)
     time_weight_coeff = 0.5
     t_w_vec = (1.0 + time_weight_coeff * (t_eval[:-1] / t_span_end)).to(DEVICE, DTYPE) # Shape [n_t-1]
     t_w_full_vec = (1.0 + time_weight_coeff * (t_eval / t_span_end)).to(DEVICE, DTYPE)  # Shape [n_t]
@@ -1121,11 +1121,11 @@ if __name__ == "__main__":
     if abs(initial_energy_check - energy_level) > 1e-5: print(f"Warning: Calculated H0 differs significantly from target E ({energy_level:.4f}).")
 
     # --- Simulation & Training Parameters ---
-    t_span_end = 300.0          
-    num_points_train = 6000   
-    num_points_eval = 600000    
-    num_points_benchmark = 3000000 
-    epochs = 100                
+    t_span_end = 20.0          
+    num_points_train = 4000   
+    num_points_eval = 40000    
+    num_points_benchmark = 300000 
+    epochs = 20              
     batch_size = 32
     lr = 3e-4
     patience = 20             
@@ -1137,13 +1137,13 @@ if __name__ == "__main__":
     # --- Model Setup ---
     models_to_run = {}
     hidden_dim = 128; base_scale = 0.005;
-    # --- MODIFICATION: Use beta=0.1 consistent with LaTeX and modified code ---
+ 
     beta_adaptive = 0.1
     activations_to_test = ['tanh'] # Test only tanh first
 
     models_to_run['Euler'] = {'model': EulerIntegrator(), 'history': None}
     for act in activations_to_test:
-        # Pass the beta value consistent with the LaTeX description and code modifications
+        
         models_to_run[f"EnhancedSympNet_{act}"] = {'model': EnhancedSympNet(hidden_dim, act, base_scale, beta_adaptive)}
         models_to_run[f"SimplePINN_{act}"] = {'model': SimplePINN_ODEFunc(hidden_dim, act)}
         models_to_run[f"SimpleHNN_{act}"] = {'model': SimpleHNN_ODEFunc(hidden_dim, act)}
