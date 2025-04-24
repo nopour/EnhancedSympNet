@@ -48,4 +48,8 @@ This repository implements the **EnhancedSympNet** framework for simulating the 
 - Phase space diagrams
 - Poincaré sections
 - Energy conservation metrics
-- Lyapunov exponent estimation
+
+### Contact
+For questions or collaborations, please contact:
+Reza Nopour
+📧 rezanopour@gmail.com
