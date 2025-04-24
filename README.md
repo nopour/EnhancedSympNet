@@ -1,7 +1,9 @@
-EnhancedSympNet-HenonHeiles
+# EnhancedSympNet-HenonHeiles 
 
 This repository contains a Python implementation of the EnhancedSympNet framework for simulating the Hénon-Heiles system, a chaotic Hamiltonian system. The code is based on the paper "EnhancedSympNet: A Neural-Symplectic Framework for Mechanical System Simulation" (2025). It combines symplectic integration (Velocity Verlet) with a neural network to learn correction dynamics, achieving improved accuracy and energy conservation compared to traditional methods.
 EnhancedSympNet-HenonHeiles
+
+
 ===========================
 
 Overview
@@ -22,6 +24,7 @@ Getting Started
 
 Prerequisites
 ~~~~~~~~~~~~~
+```
 - Python 3.9+
 - Recommended: Create a virtual environment
 ```
