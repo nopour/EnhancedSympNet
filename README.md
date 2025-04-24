@@ -13,7 +13,7 @@ A neural-symplectic framework for high-accuracy simulation of the Hénon-Heiles 
 This repository implements the **EnhancedSympNet** framework for simulating the chaotic Hénon-Heiles system, as presented in:
 
 > **"EnhancedSympNet: A Neural-Symplectic Framework for Mechanical System Simulation"**  
-> *Reza Nopour and Afshin Taghvaeipour (2025)*
+
 
 ### Key Features
 
@@ -51,5 +51,6 @@ This repository implements the **EnhancedSympNet** framework for simulating the 
 
 ### Contact
 For questions or collaborations, please contact:
-Reza Nopour
+
+
 📧 rezanopour@gmail.com
